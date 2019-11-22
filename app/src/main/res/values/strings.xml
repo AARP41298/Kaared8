@@ -14,4 +14,12 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="title_activity_semana">SemanaActivity</string>
+
+    <string name="tab_sem_1">Lunes</string>
+    <string name="tab_sem_2">Martes</string>
+    <string name="tab_sem_3">Miercoles</string>
+    <string name="tab_sem_4">Jueves</string>
+    <string name="tab_sem_5">Viernes</string>
+
 </resources>
