@@ -8,12 +8,15 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_seccion_1">Citas</string>
+    <string name="menu_camera">Agendar</string>
+    <string name="menu_gallery">Editar</string>
+    <string name="menu_slideshow">Cancelar</string>
+    <string name="menu_tools">Visualizar</string>
+
+    <string name="menu_seccion_2">Caja</string>
+    <string name="menu_share">Ingresos</string>
+    <string name="menu_send">Egresos</string>
     <string name="title_activity_semana">SemanaActivity</string>
 
     <string name="tab_sem_1">Lunes</string>
