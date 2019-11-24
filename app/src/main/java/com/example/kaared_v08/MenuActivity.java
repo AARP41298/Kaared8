@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                  */
-                Intent intent=new Intent(MenuActivity.this, SemanaActivity.class);
+                Intent intent = new Intent(MenuActivity.this, SemanaActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_inicio,
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)

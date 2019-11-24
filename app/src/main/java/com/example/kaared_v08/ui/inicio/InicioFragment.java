@@ -1,4 +1,4 @@
-package com.example.kaared_v08.ui.gallery;
+package com.example.kaared_v08.ui.inicio;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,16 +13,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.kaared_v08.R;
+import com.example.kaared_v08.ui.gallery.GalleryViewModel;
 
-public class GalleryFragment extends Fragment {
+public class InicioFragment extends Fragment {
     private GalleryViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         galleryViewModel = ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        View root = inflater.inflate(R.layout.inicio_fragment, container, false);
+        final TextView textView = root.findViewById(R.id.tv_inicio_frag);
         /*
         galleryViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -31,7 +32,7 @@ public class GalleryFragment extends Fragment {
             }
         });
          */
-        textView.setText(R.string.easter_egg);
+        textView.setText("Este es el text view de inicio");
 
 
         return root;
