@@ -36,7 +36,7 @@
                 android:title="@string/menu_share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/menos"
+                android:icon="@drawable/menos2"
                 android:title="@string/menu_send" />
         </menu>
     </item>
