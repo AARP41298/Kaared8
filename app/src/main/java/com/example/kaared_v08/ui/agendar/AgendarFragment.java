@@ -17,13 +17,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.kaared_v08.R;
 
 public class AgendarFragment extends Fragment {
 
     private AgendarViewModel mViewModel;
-    Button btn_fecha;
+    Button btnFecha,btnAgendar;
+    TimePicker timePicker;
 
     public static AgendarFragment newInstance() {
         return new AgendarFragment();
@@ -44,17 +47,35 @@ public class AgendarFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+
     private void cargarEventos() {
-        btn_fecha.setOnClickListener(new View.OnClickListener() {
+        btnFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
             }
         });
+        btnAgendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agendarCita();
+            }
+        });
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                //De aqui jalamos la hora y el minuto
+            }
+        });
+    }
+
+    private void agendarCita() {
     }
 
     private void cargarControles() {
-        btn_fecha = getView().findViewById(R.id.btn_agfrag_fecha);
+        btnFecha = getView().findViewById(R.id.btn_agfrag_fecha);
+        btnAgendar = getView().findViewById(R.id.btn_agfrag_agendar);
+        timePicker = getView().findViewById(R.id.tp_agfrag);
     }
 
     @Override
