@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.inicio.InicioFragment">
 
-    <TextView
-        android:id="@+id/tv_inicio_frag"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_inicio_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="@android:color/darker_gray"
+        android:scrollbars="vertical" />
 
 </FrameLayout>

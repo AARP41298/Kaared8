@@ -49,7 +49,7 @@ public class AgendarFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AgendarViewModel.class);
+        //mViewModel = ViewModelProviders.of(this).get(AgendarViewModel.class);
         cargarControles();
         cargarEventos();
         // TODO: Use the ViewModel
