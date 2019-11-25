@@ -11,22 +11,47 @@
     <TextView
         android:id="@+id/tv_agfrag_fecha"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginTop="32dp"
-        android:text="Escoja una fecha"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="dd - mm - aaaa"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_tel" />
 
     <Button
         android:id="@+id/btn_agfrag_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
+        android:text="Escoger fecha"
         android:textColor="#ffffff"
-        android:text="Fecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_agfrag_fecha" />
+
+    <EditText
+        android:id="@+id/et_agfrag_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_agfrag_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:hint="Teléfono"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_nombre" />
 </androidx.constraintlayout.widget.ConstraintLayout>
