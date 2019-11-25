@@ -12,18 +12,19 @@
         android:id="@+id/tv_agfrag_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="dd - mm - aaaa"
+        android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_tel" />
+        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_servicio" />
 
     <Button
         android:id="@+id/btn_agfrag_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_corners"
         android:text="Escoger fecha"
         android:textColor="#ffffff"
@@ -35,7 +36,7 @@
         android:id="@+id/et_agfrag_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
@@ -47,7 +48,7 @@
         android:id="@+id/et_agfrag_tel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Teléfono"
         android:inputType="phone"
@@ -59,7 +60,6 @@
         android:id="@+id/tp_agfrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,9 +71,68 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_corners"
-        android:textColor="#ffffff"
         android:text="Agendar"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_eta" />
+
+    <EditText
+        android:id="@+id/et_agfrag_servicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Servicio"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_agfrag_tel" />
+
+    <EditText
+        android:id="@+id/et_agfrag_eta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="7"
+        android:hint="Tiempo estimado"
+        android:textAlignment="textEnd"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tp_agfrag" />
+
+    <EditText
+        android:id="@+id/et_agfrag_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ems="5"
+        android:hint="Precio"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tp_agfrag" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="10dp"
+        android:text="min"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/et_agfrag_eta"
+        app:layout_constraintTop_toBottomOf="@+id/tp_agfrag" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:text="$"
+        android:textColor="#000000"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toStartOf="@+id/et_agfrag_precio"
         app:layout_constraintTop_toBottomOf="@+id/tp_agfrag" />
 </androidx.constraintlayout.widget.ConstraintLayout>
