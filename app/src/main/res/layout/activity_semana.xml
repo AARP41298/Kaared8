@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efd8e3"
+    android:background="@color/colorSuave"
     tools:context=".SemanaActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,6 +14,7 @@
 
 
         <com.google.android.material.tabs.TabLayout
+            app:tabTextAppearance="@style/EstiloTabbed"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
