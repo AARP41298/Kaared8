@@ -20,6 +20,8 @@ import com.example.kaared_v08.R;
 import com.example.kaared_v08.ui.gallery.GalleryViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class InicioFragment extends Fragment {
     RecyclerView mRecyclerView;
@@ -63,10 +65,11 @@ public class InicioFragment extends Fragment {
 
     private void cargarLista() {
         listaCitas.clear();
-        listaCitas.add(new CitaItem("Hoy", "A", "Uñas", "12:00"));
-        listaCitas.add(new CitaItem("Hoy", "B", "Uñas", "12:00"));
-        listaCitas.add(new CitaItem("Hoy", "C", "Uñas", "12:00"));
-        listaCitas.add(new CitaItem("Hoy", "D", "Uñas", "12:00"));
-        listaCitas.add(new CitaItem("Hoy", "E", "Uñas", "12:00"));
+        listaCitas.add(new CitaItem("Hoy", "A", "Z", "1200"));
+        listaCitas.add(new CitaItem("Mañana", "B", "F", "1300"));
+        listaCitas.add(new CitaItem("Mañana", "C", "E", "1230"));
+        listaCitas.add(new CitaItem("Pasado", "D", "Y", "1522"));
+        listaCitas.add(new CitaItem("Hoy", "E", "I", "1111"));
+
     }
 }

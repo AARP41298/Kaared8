@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,7 @@ public class AgendarFragment extends Fragment {
     TimePicker timePicker;
     TextView tvFecha;
     int hora, minuto;
+    int contadorTel;
 
     public static AgendarFragment newInstance() {
         return new AgendarFragment();
@@ -70,6 +73,32 @@ public class AgendarFragment extends Fragment {
                 agendarCita();
             }
         });
+        etTel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                for (int i = 0; i < s.length(); i++) {
+                    char num = s.charAt(i);
+                    //Toast.makeText(getContext(), s.toString(), Toast.LENGTH_SHORT).show();
+                    if ('0' <= num && num <= '9') {
+                        Toast.makeText(getContext(), s.toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        etTel.setError(String.format("Ingresa solo numeros"));
+                        break;
+                    }
+                }
+                contadorTel = s.length();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         /*
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
@@ -97,9 +126,11 @@ public class AgendarFragment extends Fragment {
 
  */
 
+
         if (validaTexto()) {
             Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private boolean validaTexto() {
@@ -110,10 +141,14 @@ public class AgendarFragment extends Fragment {
             etNom.setError(String.format("Ingresa el %1s", "nombre"));
             Toast.makeText(getContext(), "Faltan agregar campos", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(etTel.getText())) {
+        if (contadorTel == 0) {
+
             valido = false;
             etTel.setError(String.format("Ingresa el %1s", "telefono"));
             Toast.makeText(getContext(), "Faltan agregar campos", Toast.LENGTH_SHORT).show();
+        } else if (contadorTel != 10) {
+            etTel.setError(String.format("Debe ser de 10 digitos"));
+            valido = false;
         }
         if (TextUtils.isEmpty(etSer.getText())) {
             valido = false;
