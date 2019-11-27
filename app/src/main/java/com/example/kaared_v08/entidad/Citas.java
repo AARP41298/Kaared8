@@ -1,9 +1,9 @@
 package com.example.kaared_v08.entidad;
 
-public class citas {
+public class Citas {
     String idCitas,nombre,telefono,servicio,fecha,hora,eta,precio,status;
 
-    public citas(String idCitas, String nombre, String telefono, String servicio, String fecha, String hora, String eta, String precio, String status) {
+    public Citas(String idCitas, String nombre, String telefono, String servicio, String fecha, String hora, String eta, String precio, String status) {
         this.idCitas = idCitas;
         this.nombre = nombre;
         this.telefono = telefono;

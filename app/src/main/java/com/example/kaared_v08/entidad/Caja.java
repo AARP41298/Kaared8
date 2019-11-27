@@ -1,9 +1,9 @@
 package com.example.kaared_v08.entidad;
 
-public class caja {
+public class Caja {
     String id, fecha, concepto, monto, hora;
 
-    public caja(String id, String fecha, String concepto, String monto, String hora) {
+    public Caja(String id, String fecha, String concepto, String monto, String hora) {
         this.id = id;
         this.fecha = fecha;
         this.concepto = concepto;

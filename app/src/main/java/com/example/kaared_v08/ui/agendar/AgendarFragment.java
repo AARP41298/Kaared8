@@ -127,8 +127,10 @@ public class AgendarFragment extends Fragment {
  */
 
 
+
         if (validaTexto()) {
-            Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
+
         }
 
     }
