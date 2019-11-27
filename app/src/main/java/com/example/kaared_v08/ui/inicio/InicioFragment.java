@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kaared_v08.MainActivity;
 import com.example.kaared_v08.R;
+import com.example.kaared_v08.entidad.citas;
 import com.example.kaared_v08.ui.gallery.GalleryViewModel;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class InicioFragment extends Fragment {
     AdaptadorCitaItem mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
-    ArrayList<CitaItem> listaCitas = new ArrayList<>();
+    ArrayList<citas> listaCitas = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,11 +66,13 @@ public class InicioFragment extends Fragment {
 
     private void cargarLista() {
         listaCitas.clear();
-        listaCitas.add(new CitaItem("Hoy", "A", "Z", "1200"));
-        listaCitas.add(new CitaItem("Mañana", "B", "F", "1300"));
-        listaCitas.add(new CitaItem("Mañana", "C", "E", "1230"));
-        listaCitas.add(new CitaItem("Pasado", "D", "Y", "1522"));
-        listaCitas.add(new CitaItem("Hoy", "E", "I", "1111"));
+        listaCitas.add(new citas("1","Aaron","5545023016","Uñas","10/20/2019","15:23","50","100","agendada"));
+        listaCitas.add(new citas("2","Eevee","7861541203","Tinte","10/20/2019","15:23","50","100","cancelada"));
+        listaCitas.add(new citas("3","Aram","5527157000","Pelo","10/20/2019","15:23","50","100","confirmada"));
+        listaCitas.add(new citas("4","Karina","7861234567","ABC","10/20/2019","15:23","50","100","agendada"));
+        listaCitas.add(new citas("5","Manulz","7861234567","DEF","10/20/2019","15:23","50","100","agendada"));
+        listaCitas.add(new citas("6","Adilene","7861234567","GHI","10/20/2019","15:23","50","100","agendada"));
+
 
     }
 }

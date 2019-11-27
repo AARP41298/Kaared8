@@ -8,11 +8,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kaared_v08.R;
+import com.example.kaared_v08.entidad.citas;
 
 import java.util.ArrayList;
 
 public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.ExampleViewHolder> {
-    private ArrayList<CitaItem> mListaCita;
+
+    private ArrayList<citas> mListaCita;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -49,7 +51,7 @@ public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.Ex
         }
     }
 
-    public AdaptadorCitaItem(ArrayList<CitaItem> listaCancion) {
+    public AdaptadorCitaItem(ArrayList<citas> listaCancion) {
         mListaCita = listaCancion;
     }
 
@@ -63,8 +65,8 @@ public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.Ex
 
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        CitaItem citaActual = mListaCita.get(position);
-        holder.tvDia.setText(citaActual.getDia());
+        citas citaActual = mListaCita.get(position);
+        holder.tvDia.setText(citaActual.getFecha());
         holder.tvServicio.setText(citaActual.getServicio());
         holder.tvHora.setText(citaActual.getHora());
         holder.tvNombre.setText(citaActual.getNombre());

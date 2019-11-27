@@ -16,11 +16,11 @@
                 android:icon="@drawable/agendar"
                 android:title="@string/menu_camera" />
             <item
-                android:id="@+id/nav_gallery"
+                android:id="@+id/nav_editar"
                 android:icon="@drawable/editar"
                 android:title="@string/menu_gallery" />
             <item
-                android:id="@+id/nav_slideshow"
+                android:id="@+id/nav_cancelar"
                 android:icon="@drawable/cancelar"
                 android:title="@string/menu_slideshow" />
 
@@ -31,11 +31,11 @@
     <item android:title="@string/menu_seccion_2">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_ingresos"
                 android:icon="@drawable/mas"
                 android:title="@string/menu_share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_egresos"
                 android:icon="@drawable/menos2"
                 android:title="@string/menu_send" />
         </menu>

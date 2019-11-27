@@ -19,32 +19,27 @@
         tools:layout="@layout/agendar_fragment" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.kaared_v08.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_editar"
+        android:name="com.example.kaared_v08.ui.editar.EditarFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_editar" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.kaared_v08.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_cancelar"
+        android:name="com.example.kaared_v08.ui.cancelar.CancelarFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_cancelar" />
+
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.kaared_v08.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.kaared_v08.ui.share.ShareFragment"
+        android:id="@+id/nav_ingresos"
+        android:name="com.example.kaared_v08.ui.ingresos.IngresosFragment"
         android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_ingresos" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.kaared_v08.ui.send.SendFragment"
+        android:id="@+id/nav_egresos"
+        android:name="com.example.kaared_v08.ui.egresos.EgresosFragment"
         android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_egresos" />
 </navigation>
