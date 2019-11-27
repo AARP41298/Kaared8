@@ -1,89 +1,69 @@
 package com.example.kaared_v08.entidad;
 
 public class Citas {
-    String idCitas,nombre,telefono,servicio,fecha,hora,eta,precio,status;
+    String idCitas,nombre,telefono,servicio,status;
+    int hrs,min,precio,eta,dia,mes,anio;
 
-    public Citas(String idCitas, String nombre, String telefono, String servicio, String fecha, String hora, String eta, String precio, String status) {
+    public Citas(String idCitas, String nombre, String telefono, String servicio, String status, int hrs, int min, int precio, int eta, int dia, int mes, int anio) {
         this.idCitas = idCitas;
         this.nombre = nombre;
         this.telefono = telefono;
         this.servicio = servicio;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.eta = eta;
-        this.precio = precio;
         this.status = status;
+        this.hrs = hrs;
+        this.min = min;
+        this.precio = precio;
+        this.eta = eta;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
     }
 
     public String getIdCitas() {
         return idCitas;
     }
 
-    public void setIdCitas(String idCitas) {
-        this.idCitas = idCitas;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getServicio() {
         return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String getEta() {
-        return eta;
-    }
-
-    public void setEta(String eta) {
-        this.eta = eta;
-    }
-
-    public String getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(String precio) {
-        this.precio = precio;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public int getHrs() {
+        return hrs;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public int getEta() {
+        return eta;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public int getAnio() {
+        return anio;
     }
 }

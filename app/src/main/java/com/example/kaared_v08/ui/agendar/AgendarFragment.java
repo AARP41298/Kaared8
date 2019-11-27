@@ -27,7 +27,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.kaared_v08.DB.TinyDBCitas;
 import com.example.kaared_v08.R;
+import com.example.kaared_v08.entidad.Citas;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class AgendarFragment extends Fragment {
 
@@ -43,6 +48,8 @@ public class AgendarFragment extends Fragment {
         return new AgendarFragment();
     }
 
+    ArrayList<Citas> listaCita = new ArrayList<Citas>();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -55,6 +62,9 @@ public class AgendarFragment extends Fragment {
         //mViewModel = ViewModelProviders.of(this).get(AgendarViewModel.class);
         cargarControles();
         cargarEventos();
+
+        TinyDBCitas load = new TinyDBCitas(getContext());
+        listaCita = load.getListObject("DBlistaCitas");
         // TODO: Use the ViewModel
     }
 
@@ -85,7 +95,7 @@ public class AgendarFragment extends Fragment {
                     char num = s.charAt(i);
                     //Toast.makeText(getContext(), s.toString(), Toast.LENGTH_SHORT).show();
                     if ('0' <= num && num <= '9') {
-                        Toast.makeText(getContext(), s.toString(), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getContext(), s.toString(), Toast.LENGTH_SHORT).show();
                     } else {
                         etTel.setError(String.format("Ingresa solo numeros"));
                         break;
@@ -127,12 +137,63 @@ public class AgendarFragment extends Fragment {
  */
 
 
-
         if (validaTexto()) {
             //Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
+            int dia, mes, anio;
+            String[] fecha = tvFecha.getText().toString().split("-");
+            dia = Integer.parseInt(fecha[0]);
+            mes = obtenerNumMes(fecha[1]);
+            anio = Integer.parseInt(fecha[2]);
+
+            Toast.makeText(getContext(), "Agendado", Toast.LENGTH_SHORT).show();
+
+            listaCita.add(new Citas(listaCita.size() + 1 + "", etNom.getText().toString(),
+                    etTel.getText().toString(), etSer.getText().toString(),
+                    "agendada", hora, minuto, Integer.parseInt(etPrecio.getText().toString()),
+                    Integer.parseInt(etEta.getText().toString()), dia, mes, anio));
+            TinyDBCitas save = new TinyDBCitas(getContext());
+            save.putListObject("DBlistaCitas", listaCita);
+
+            etNom.setText("");
+            etTel.setText("");
+            etSer.setText("");
+            tvFecha.setText("dd - mm - aaaa");
+            etEta.setText("");
+            etPrecio.setText("");
 
         }
 
+    }
+
+    private int obtenerNumMes(String s) {
+        switch (s) {
+            case "ene":
+                return 0;
+            case "feb":
+                return 1;
+            case "mar":
+                return 2;
+            case "abr":
+                return 3;
+            case "may":
+                return 4;
+            case "jun":
+                return 5;
+            case "jul":
+                return 6;
+            case "ago":
+                return 7;
+            case "sep":
+                return 8;
+            case "oct":
+                return 9;
+            case "nov":
+                return 10;
+            case "dic":
+                return 11;
+            default:
+                return 404;
+        }
     }
 
     private boolean validaTexto() {

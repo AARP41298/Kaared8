@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kaared_v08.R;
 
@@ -25,6 +26,8 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
+        //Obtenemos el dia de hoy
+        //Toast.makeText(getContext(), c.get(Calendar.YEAR)+" "+c.get(Calendar.MONTH)+" "+c.get(Calendar.DAY_OF_MONTH)+"", Toast.LENGTH_SHORT).show();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
@@ -37,7 +40,8 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         TextView tv1 = getActivity().findViewById(R.id.tv_agfrag_fecha);
         //tv1.setText("Año: " + view.getYear() + " Month: " + view.getMonth() + " Day: " + view.getDayOfMonth());
         String mesLetra = obtenerMes(view.getMonth());
-        tv1.setText(view.getDayOfMonth() + " - " + mesLetra + " - " + view.getYear());
+        tv1.setText(view.getDayOfMonth() + "-" + mesLetra + "-" + view.getYear());
+
 
     }
 
