@@ -19,6 +19,14 @@ public class Citas {
         this.anio = anio;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Citas() {
+
+    }
+
     public String getIdCitas() {
         return idCitas;
     }
