@@ -15,6 +15,10 @@ public class Caja {
         this.min = min;
     }
 
+    public Caja() {
+
+    }
+
     public String getId() {
         return id;
     }
