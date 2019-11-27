@@ -1,5 +1,7 @@
 package com.example.kaared_v08.ui.inicio;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +14,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.kaared_v08.DB.TinyDBCaja;
 import com.example.kaared_v08.DB.TinyDBCitas;
 import com.example.kaared_v08.R;
+import com.example.kaared_v08.entidad.Caja;
 import com.example.kaared_v08.entidad.Citas;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class InicioFragment extends Fragment {
     RecyclerView mRecyclerView;
@@ -26,6 +31,7 @@ public class InicioFragment extends Fragment {
     ArrayList<Citas> listaCitas = new ArrayList<>();
     ArrayList<Citas> listaCitasA = new ArrayList<>();
 
+    ArrayList<Caja> listaCaja = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +47,8 @@ public class InicioFragment extends Fragment {
         cargarLista();
         cargarRecycler();
 
+        TinyDBCaja loadCaja = new TinyDBCaja(getContext());
+        listaCaja = loadCaja.getListObject("DBlistaCaja");
 
     }
 
@@ -57,19 +65,79 @@ public class InicioFragment extends Fragment {
         mAdapter.setOnItemClickListener(new AdaptadorCitaItem.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getActivity(), listaCitasA.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), listaCitasA.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+                if (seleccionEsHoy(listaCitasA.get(position))) {
+                    confirmacion(listaCitasA.get(position), listaCitas);
+                } else
+                    Toast.makeText(getContext(), "Solo puedes confirmar citas de hoy", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private boolean seleccionEsHoy(Citas citas) {
+        Calendar c = Calendar.getInstance();
+        if (c.get(Calendar.DAY_OF_MONTH) == citas.getDia() &&
+                c.get(Calendar.MONTH) == citas.getMes() &&
+                c.get(Calendar.YEAR) == citas.getAnio()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void confirmacion(final Citas citas, final ArrayList listaCitaGlobal) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        alert.setTitle("Confirmación");
+        alert.setMessage("Seguro que desea confirmar la cita?");
+        alert.setCancelable(false);
+        alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                for (int j = 0; j < listaCitas.size(); j++) {
+                    Citas c = listaCitas.get(j);
+                    if (c.getIdCitas() == citas.getIdCitas()) {
+                        listaCitas.get(j).setStatus("confirmada");
+
+                        TinyDBCitas saveCita = new TinyDBCitas(getContext());
+                        saveCita.putListObject("DBlistaCitas", listaCitaGlobal);
+
+                        guardarConfirmada(listaCitas.get(j));
+                        //refresh fragment
+                        refresh();
+                    }
+                }
+            }
+        });
+        alert.setNegativeButton("No", null);
+        alert.show();
+    }
+
+    private void guardarConfirmada(Citas cita) {
+        listaCaja.add(new Caja(listaCaja.size() + 1 + "", cita.getServicio(), cita.getPrecio(), cita.getDia(),
+                cita.getMes(), cita.getAnio(), cita.getHrs(), cita.getMin()));
+
+        TinyDBCaja saveCaja = new TinyDBCaja(getContext());
+        saveCaja.putListObject("DBlistaCaja", listaCaja);
+
+
+    }
+
+    private void refresh() {
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
     private void cargarLista() {
         TinyDBCitas load = new TinyDBCitas(getContext());
         listaCitas = load.getListObject("DBlistaCitas");
-        for (Citas c : listaCitas){
-            if (c.getStatus().equalsIgnoreCase("agendada")){
+        listaCitasA.clear();
+        for (Citas c : listaCitas) {
+            if (c.getStatus().equalsIgnoreCase("agendada")) {
                 listaCitasA.add(c);
             }
         }
 
     }
+
+
 }

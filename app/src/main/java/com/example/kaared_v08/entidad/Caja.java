@@ -1,53 +1,49 @@
 package com.example.kaared_v08.entidad;
 
 public class Caja {
-    String id, fecha, concepto, monto, hora;
+    String id, concepto;
+    int monto, dia, mes, anio, hrs, min;
 
-    public Caja(String id, String fecha, String concepto, String monto, String hora) {
+    public Caja(String id, String concepto, int monto, int dia, int mes, int anio, int hrs, int min) {
         this.id = id;
-        this.fecha = fecha;
         this.concepto = concepto;
         this.monto = monto;
-        this.hora = hora;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+        this.hrs = hrs;
+        this.min = min;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public String getConcepto() {
         return concepto;
     }
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
-    }
-
-    public String getMonto() {
+    public int getMonto() {
         return monto;
     }
 
-    public void setMonto(String monto) {
-        this.monto = monto;
+    public int getDia() {
+        return dia;
     }
 
-    public String getHora() {
-        return hora;
+    public int getMes() {
+        return mes;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public int getAnio() {
+        return anio;
+    }
+
+    public int getHrs() {
+        return hrs;
+    }
+
+    public int getMin() {
+        return min;
     }
 }
