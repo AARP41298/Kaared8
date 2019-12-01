@@ -30,7 +30,7 @@ public class EgresosFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<Caja> listaCaja = new ArrayList<>();
-    ArrayList<Caja> listaCajaI = new ArrayList<>();
+    ArrayList<Caja> listaCajaE = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,10 +60,10 @@ public class EgresosFragment extends Fragment {
 
     private void cargarRecycler() {
 
-        mRecyclerView = getActivity().findViewById(R.id.recycler_ingresos_frag);
+        mRecyclerView = getActivity().findViewById(R.id.recycler_egresos_frag);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new AdaptadorCajaItemIngresos(listaCajaI);
+        mAdapter = new AdaptadorCajaItemIngresos(listaCajaE);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -73,15 +73,15 @@ public class EgresosFragment extends Fragment {
     private void cargarLista() {
         TinyDBCaja loadCaja = new TinyDBCaja(getContext());
         listaCaja = loadCaja.getListObject("DBlistaCaja");
-        listaCajaI.clear();
+        listaCajaE.clear();
         int total = 0;
         for (Caja i : listaCaja) {
             if (i.getMonto() < 0) {
-                listaCajaI.add(i);
+                listaCajaE.add(i);
                 total += i.getMonto();
             }
         }
-        listaCajaI.add(new Caja("", "", total, 0, 0, 0, 0, 0));
+        listaCajaE.add(new Caja("", "", total, 0, 0, 0, 0, 0));
 
     }
 }

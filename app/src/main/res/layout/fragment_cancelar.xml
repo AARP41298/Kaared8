@@ -6,6 +6,7 @@
     tools:context=".ui.cancelar.CancelarFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:backgroundTint="@color/colorSuave"
         android:id="@+id/recycler_cancelar_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

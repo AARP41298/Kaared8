@@ -73,10 +73,18 @@ public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.Ex
 
         holder.tvDia.setText(obtenerHMP());
         holder.tvServicio.setText(citaActual.getServicio());
-        holder.tvHora.setText(citaActual.getHrs() + ":" + citaActual.getMin() + " " + obtenerAMPM(citaActual.getHrs()));
+        holder.tvHora.setText(citaActual.getHrs() + ":" + obtenerMin(citaActual.getMin()) + " " + obtenerAMPM(citaActual.getHrs()));
         holder.tvNombre.setText(citaActual.getNombre());
 
 
+    }
+
+    private String obtenerMin(int min) {
+        String minStrn = min + "";
+        if (min < 10) {
+            minStrn = "0" + min;
+        }
+        return minStrn;
     }
 
     private String obtenerHMP() {

@@ -10,13 +10,13 @@
         android:id="@+id/nav_inicio"
         android:name="com.example.kaared_v08.ui.inicio.InicioFragment"
         android:label="@string/menu_inicio"
-        tools:layout="@layout/inicio_fragment" />
+        tools:layout="@layout/fragment_inicio" />
 
     <fragment
         android:id="@+id/nav_agendar"
         android:name="com.example.kaared_v08.ui.agendar.AgendarFragment"
         android:label="@string/menu_camera"
-        tools:layout="@layout/agendar_fragment" />
+        tools:layout="@layout/fragment_agendar" />
 
     <fragment
         android:id="@+id/nav_editar"

@@ -2,11 +2,7 @@ package com.example.kaared_v08.ui.agendar;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -31,7 +27,6 @@ import com.example.kaared_v08.DB.TinyDBCitas;
 import com.example.kaared_v08.R;
 import com.example.kaared_v08.entidad.Citas;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AgendarFragment extends Fragment {
@@ -53,7 +48,7 @@ public class AgendarFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.agendar_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_agendar, container, false);
     }
 
     @Override
