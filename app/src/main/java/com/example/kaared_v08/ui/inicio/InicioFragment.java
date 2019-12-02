@@ -76,9 +76,14 @@ public class InicioFragment extends Fragment {
 
     private boolean seleccionEsHoy(Citas citas) {
         Calendar c = Calendar.getInstance();
-        if (c.get(Calendar.DAY_OF_MONTH) == citas.getDia() &&
-                c.get(Calendar.MONTH) == citas.getMes() &&
-                c.get(Calendar.YEAR) == citas.getAnio()) {
+
+        Calendar in = Calendar.getInstance();
+        in.setTimeInMillis(citas.getFechaIni());
+
+
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.YEAR)) {
             return true;
         } else {
             return false;
@@ -114,8 +119,9 @@ public class InicioFragment extends Fragment {
     }
 
     private void guardarConfirmada(Citas cita) {
-        listaCaja.add(new Caja(listaCaja.size() + 1 + "", cita.getServicio(), cita.getPrecio(), cita.getDia(),
-                cita.getMes(), cita.getAnio(), cita.getHrs(), cita.getMin()));
+        Calendar c=Calendar.getInstance();
+
+        listaCaja.add(new Caja(listaCaja.size() + 1 + "", cita.getServicio(), cita.getPrecio(), c.getTimeInMillis()));
 
         TinyDBCaja saveCaja = new TinyDBCaja(getContext());
         saveCaja.putListObject("DBlistaCaja", listaCaja);

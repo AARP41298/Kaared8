@@ -2,76 +2,81 @@ package com.example.kaared_v08.entidad;
 
 public class Citas {
     String idCitas,nombre,telefono,servicio,status;
-    int hrs,min,precio,eta,dia,mes,anio;
+    int precio;
+    long fechaIni,fechaFin;
 
-    public Citas(String idCitas, String nombre, String telefono, String servicio, String status, int hrs, int min, int precio, int eta, int dia, int mes, int anio) {
+    public Citas(String idCitas, String nombre, String telefono, String servicio, String status, int precio, long fechaIni, long fechaFin) {
         this.idCitas = idCitas;
         this.nombre = nombre;
         this.telefono = telefono;
         this.servicio = servicio;
         this.status = status;
-        this.hrs = hrs;
-        this.min = min;
         this.precio = precio;
-        this.eta = eta;
-        this.dia = dia;
-        this.mes = mes;
-        this.anio = anio;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Citas() {
-
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
     }
 
     public String getIdCitas() {
         return idCitas;
     }
 
+    public void setIdCitas(String idCitas) {
+        this.idCitas = idCitas;
+    }
+
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getServicio() {
         return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public int getHrs() {
-        return hrs;
-    }
-
-    public int getMin() {
-        return min;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getPrecio() {
         return precio;
     }
 
-    public int getEta() {
-        return eta;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
-    public int getDia() {
-        return dia;
+    public long getFechaIni() {
+        return fechaIni;
     }
 
-    public int getMes() {
-        return mes;
+    public void setFechaIni(long fechaIni) {
+        this.fechaIni = fechaIni;
     }
 
-    public int getAnio() {
-        return anio;
+    public long getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(long fechaFin) {
+        this.fechaFin = fechaFin;
     }
 }

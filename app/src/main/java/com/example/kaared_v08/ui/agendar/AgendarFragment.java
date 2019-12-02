@@ -28,6 +28,7 @@ import com.example.kaared_v08.R;
 import com.example.kaared_v08.entidad.Citas;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AgendarFragment extends Fragment {
 
@@ -119,8 +120,11 @@ public class AgendarFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void agendarCita() {
+        /*
         hora = timePicker.getHour();
         minuto = timePicker.getMinute();
+
+         */
 /*
         Toast.makeText(getContext(), etNom.getText().toString() + ", "
                         + etTel.getText().toString() + ", "
@@ -134,18 +138,28 @@ public class AgendarFragment extends Fragment {
 
         if (validaTexto()) {
             //Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
-            int dia, mes, anio;
+            int dia, mes, anio,eta,precio;
             String[] fecha = tvFecha.getText().toString().split("-");
             dia = Integer.parseInt(fecha[0]);
             mes = obtenerNumMes(fecha[1]);
             anio = Integer.parseInt(fecha[2]);
 
+            eta= Integer.parseInt(etEta.getText().toString());
+            precio = Integer.parseInt(etPrecio.getText().toString());
+
+            Calendar c= Calendar.getInstance();
+            c.set(anio,mes,dia,timePicker.getHour(),timePicker.getMinute());
+            long fechaIni = c.getTimeInMillis();
+            c.set(Calendar.MINUTE,c.get(Calendar.MINUTE)+eta);
+            long fechaFin =  c.getTimeInMillis();
+
+
             Toast.makeText(getContext(), "Agendado", Toast.LENGTH_SHORT).show();
 
             listaCita.add(new Citas(listaCita.size() + 1 + "", etNom.getText().toString(),
                     etTel.getText().toString(), etSer.getText().toString(),
-                    "agendada", hora, minuto, Integer.parseInt(etPrecio.getText().toString()),
-                    Integer.parseInt(etEta.getText().toString()), dia, mes, anio));
+                    "agendada", precio,
+                    fechaIni,fechaFin));
             TinyDBCitas save = new TinyDBCitas(getContext());
             save.putListObject("DBlistaCitas", listaCita);
 

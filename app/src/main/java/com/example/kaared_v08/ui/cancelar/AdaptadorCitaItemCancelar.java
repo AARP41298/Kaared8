@@ -14,7 +14,7 @@ import com.example.kaared_v08.ui.cancelar.AdaptadorCitaItemCancelar;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCitaItemCancelar.ExampleViewHolder>{
+public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCitaItemCancelar.ExampleViewHolder> {
     private ArrayList<Citas> mListaCita;
     private AdaptadorCitaItemCancelar.OnItemClickListener mListener;
 
@@ -73,30 +73,56 @@ public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCit
 
         holder.tvDia.setText(obtenerHMP());
         holder.tvServicio.setText(citaActual.getServicio());
-        holder.tvHora.setText(citaActual.getHrs() + ":" + citaActual.getMin() + " " + obtenerAMPM(citaActual.getHrs()));
+        //holder.tvHora.setText(citaActual.getHrs() + ":" + citaActual.getMin() + " " + obtenerAMPM(citaActual.getHrs()));
+        holder.tvHora.setText(obtenerHora());
         holder.tvNombre.setText(citaActual.getNombre());
 
 
     }
 
+    private String obtenerHora() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(citaActual.getFechaIni());
+        return c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + " " + obtenerAMPM(c.get(Calendar.HOUR_OF_DAY));
+    }
+
     private String obtenerHMP() {
         Calendar c = Calendar.getInstance();
-        if (c.get(Calendar.DAY_OF_MONTH) == citaActual.getDia() &&
-                c.get(Calendar.MONTH) == citaActual.getMes() &&
-                c.get(Calendar.YEAR) == citaActual.getAnio()) {
+
+        Calendar in = Calendar.getInstance();
+        in.setTimeInMillis(citaActual.getFechaIni());
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.YEAR)) {
             return "Hoy";
-        } else if (c.get(Calendar.DAY_OF_MONTH) + 1 == citaActual.getDia() &&
-                c.get(Calendar.MONTH) == citaActual.getMes() &&
-                c.get(Calendar.YEAR) == citaActual.getAnio()) {
+        } else if (manana(c, in)) {
             return "Mañana";
-        } else if (c.get(Calendar.DAY_OF_MONTH) + 2 == citaActual.getDia() &&
-                c.get(Calendar.MONTH) == citaActual.getMes() &&
-                c.get(Calendar.YEAR) == citaActual.getAnio()) {
+        } else if (pasado(c, in)) {
             return "Pasado";
         } else {
-            return citaActual.getDia() + "/" + obtenerMes(citaActual.getMes()) + "/" + citaActual.getAnio();
+            //return citaActual.getDia() + "/" + obtenerMes(citaActual.getMes()) + "/" + citaActual.getAnio();
+            return in.get(Calendar.DAY_OF_MONTH) + "/" + obtenerMes(in.get(Calendar.MONTH)) + "/" + in.get(Calendar.YEAR);
         }
     }
+
+    private boolean pasado(Calendar c, Calendar in) {
+        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) + 2);
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {
+            return true;
+        } else return false;
+    }
+
+    private boolean manana(Calendar c, Calendar in) {
+        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) + 1);
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {
+            return true;
+        } else return false;
+    }
+
 
     private Object obtenerAMPM(int hrs) {
         if (hrs < 12) {

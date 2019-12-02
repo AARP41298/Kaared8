@@ -81,7 +81,9 @@ public class EgresosFragment extends Fragment {
                 total += i.getMonto();
             }
         }
-        listaCajaE.add(new Caja("", "", total, 0, 0, 0, 0, 0));
+        //Agregar el TOTAL al recycler
+        //listaCajaE.add(new Caja("", "", total, 0, 0, 0, 0, 0));
+        listaCajaE.add(new Caja("",""))
 
     }
 }

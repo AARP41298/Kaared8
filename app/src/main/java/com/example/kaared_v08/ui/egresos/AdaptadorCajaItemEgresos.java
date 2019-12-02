@@ -67,6 +67,7 @@ public class AdaptadorCajaItemEgresos extends RecyclerView.Adapter<AdaptadorCaja
 
     @Override
     public void onBindViewHolder(AdaptadorCajaItemEgresos.ExampleViewHolder holder, int position) {
+
         cajaActual = mListaCita.get(position);
 
         if (cajaActual.getDia() == 0) {
@@ -83,9 +84,12 @@ public class AdaptadorCajaItemEgresos extends RecyclerView.Adapter<AdaptadorCaja
             holder.tvHora.setText(cajaActual.getHrs() + ":" + cajaActual.getMin() + " " + obtenerAMPM(cajaActual.getHrs()));
         }
 
+
+
     }
 
     private String obtenerHAAn() {
+
         Calendar c = Calendar.getInstance();
         if (c.get(Calendar.DAY_OF_MONTH) == cajaActual.getDia() &&
                 c.get(Calendar.MONTH) == cajaActual.getMes() &&
@@ -102,7 +106,11 @@ public class AdaptadorCajaItemEgresos extends RecyclerView.Adapter<AdaptadorCaja
         } else {
             return cajaActual.getDia() + "/" + obtenerMes(cajaActual.getMes()) + "/" + cajaActual.getAnio();
         }
+
+
     }
+
+
 
     private Object obtenerAMPM(int hrs) {
         if (hrs < 12) {
