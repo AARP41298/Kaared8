@@ -42,6 +42,7 @@ public class EgresosFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Button btnRegEgreso;
         btnRegEgreso = getView().findViewById(R.id.btn_egresos_frag);
         btnRegEgreso.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,6 @@ public class EgresosFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
 
         cargarLista();
         cargarRecycler();
