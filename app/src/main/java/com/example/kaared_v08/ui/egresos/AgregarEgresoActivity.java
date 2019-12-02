@@ -120,6 +120,13 @@ public class AgregarEgresoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+    }
+
     private void cargarControles() {
         etConcepto = findViewById(R.id.et_egreso_concepto);
         etMonto = findViewById(R.id.et_egreso_monto);
