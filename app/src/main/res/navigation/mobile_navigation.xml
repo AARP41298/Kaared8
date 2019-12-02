@@ -42,4 +42,12 @@
         android:name="com.example.kaared_v08.ui.egresos.EgresosFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_egresos" />
+
+    <fragment
+        android:id="@+id/nav_resumen"
+        android:name="com.example.kaared_v08.ui.resumen.ResumenFragment"
+        android:label="@string/menu_resumen"
+        tools:layout="@layout/fragment_resumen" />
+
+
 </navigation>

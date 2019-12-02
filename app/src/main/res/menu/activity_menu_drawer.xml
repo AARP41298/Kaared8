@@ -38,6 +38,11 @@
                 android:id="@+id/nav_egresos"
                 android:icon="@drawable/menos2"
                 android:title="@string/menu_send" />
+            <item
+                android:id="@+id/nav_resumen"
+                android:icon="@drawable/moneda"
+                android:title="@string/menu_resumen" />
+
         </menu>
     </item>
 

@@ -19,6 +19,8 @@
     <string name="menu_seccion_2">Caja</string>
     <string name="menu_share">Ingresos</string>
     <string name="menu_send">Egresos</string>
+    <string name="menu_resumen">Resumen</string>
+
     <string name="title_activity_semana">SemanaActivity</string>
 
     <string name="tab_sem_1">Lunes</string>

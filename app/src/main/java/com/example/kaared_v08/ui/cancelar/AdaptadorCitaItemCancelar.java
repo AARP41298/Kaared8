@@ -98,7 +98,7 @@ public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCit
         } else if (manana(c, in)) {
             return "Mañana";
         } else if (pasado(c, in)) {
-            return "Pasado";
+            return "Pasado Mañana";
         } else {
             //return citaActual.getDia() + "/" + obtenerMes(citaActual.getMes()) + "/" + citaActual.getAnio();
             return in.get(Calendar.DAY_OF_MONTH) + "/" + obtenerMes(in.get(Calendar.MONTH)) + "/" + in.get(Calendar.YEAR);
@@ -106,7 +106,8 @@ public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCit
     }
 
     private boolean pasado(Calendar c, Calendar in) {
-        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) + 2);
+        long dosDias = 86400000L;
+        c.setTimeInMillis(c.getTimeInMillis() + dosDias);
         if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
                 c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
                 c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {
@@ -115,7 +116,8 @@ public class AdaptadorCitaItemCancelar extends RecyclerView.Adapter<AdaptadorCit
     }
 
     private boolean manana(Calendar c, Calendar in) {
-        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) + 1);
+        long unDia = 86400000L;
+        c.setTimeInMillis(c.getTimeInMillis() + unDia);
         if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
                 c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
                 c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {

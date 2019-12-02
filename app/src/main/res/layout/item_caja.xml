@@ -53,7 +53,7 @@
             android:textSize="30dp"
             android:textAlignment="textEnd"
 
-            android:text="TextView" />
+            android:text="Monto" />
 
 
     </RelativeLayout>

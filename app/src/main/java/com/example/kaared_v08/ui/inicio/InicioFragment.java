@@ -22,6 +22,8 @@ import com.example.kaared_v08.entidad.Citas;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class InicioFragment extends Fragment {
     RecyclerView mRecyclerView;
@@ -122,13 +124,19 @@ public class InicioFragment extends Fragment {
         Calendar c=Calendar.getInstance();
 
         listaCaja.add(new Caja(listaCaja.size() + 1 + "", cita.getServicio(), cita.getPrecio(), c.getTimeInMillis()));
-
+        ordenarmM();
         TinyDBCaja saveCaja = new TinyDBCaja(getContext());
         saveCaja.putListObject("DBlistaCaja", listaCaja);
 
 
     }
-
+    private void ordenarmM() {
+        Collections.sort(listaCaja, new Comparator<Caja>() {
+            public int compare(Caja c1, Caja c2) {
+                return Long.valueOf(c1.getFecha()).compareTo(c2.getFecha());
+            }
+        });
+    }
     private void refresh() {
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }

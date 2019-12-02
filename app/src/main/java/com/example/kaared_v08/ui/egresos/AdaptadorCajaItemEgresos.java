@@ -70,7 +70,7 @@ public class AdaptadorCajaItemEgresos extends RecyclerView.Adapter<AdaptadorCaja
 
         cajaActual = mListaCita.get(position);
 
-        if (cajaActual.getDia() == 0) {
+        if (cajaActual.getFecha() == 0L) {
             holder.tvDia.setText("TOTAL");
             holder.tvMonto.setText("=$" + cajaActual.getMonto());
             holder.tvConcepto.setText("");
@@ -81,35 +81,60 @@ public class AdaptadorCajaItemEgresos extends RecyclerView.Adapter<AdaptadorCaja
             holder.tvDia.setText(obtenerHAAn());
             holder.tvMonto.setText("$" + cajaActual.getMonto());
             holder.tvConcepto.setText(cajaActual.getConcepto());
-            holder.tvHora.setText(cajaActual.getHrs() + ":" + cajaActual.getMin() + " " + obtenerAMPM(cajaActual.getHrs()));
+            holder.tvHora.setText(obtenerHora());
         }
 
 
+    }
 
+    private String obtenerHora() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(cajaActual.getFecha());
+        return c.get(Calendar.HOUR) + ":" + obtenerMin(c.get(Calendar.MINUTE)) + " " + obtenerAMPM(c.get(Calendar.HOUR_OF_DAY));
+    }
+    private String obtenerMin(int min) {
+        if (min<10){
+            return "0"+min;
+        } else return min+"";
     }
 
     private String obtenerHAAn() {
 
         Calendar c = Calendar.getInstance();
-        if (c.get(Calendar.DAY_OF_MONTH) == cajaActual.getDia() &&
-                c.get(Calendar.MONTH) == cajaActual.getMes() &&
-                c.get(Calendar.YEAR) == cajaActual.getAnio()) {
+
+        Calendar in = Calendar.getInstance();
+        in.setTimeInMillis(cajaActual.getFecha());
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.YEAR)) {
             return "Hoy";
-        } else if (c.get(Calendar.DAY_OF_MONTH) - 1 == cajaActual.getDia() &&
-                c.get(Calendar.MONTH) == cajaActual.getMes() &&
-                c.get(Calendar.YEAR) == cajaActual.getAnio()) {
+        } else if (ayer(c, in)) {
             return "Ayer";
-        } else if (c.get(Calendar.DAY_OF_MONTH) - 2 == cajaActual.getDia() &&
-                c.get(Calendar.MONTH) == cajaActual.getMes() &&
-                c.get(Calendar.YEAR) == cajaActual.getAnio()) {
+        } else if (antier(c, in)) {
             return "Antier";
         } else {
-            return cajaActual.getDia() + "/" + obtenerMes(cajaActual.getMes()) + "/" + cajaActual.getAnio();
+            //return citaActual.getDia() + "/" + obtenerMes(citaActual.getMes()) + "/" + citaActual.getAnio();
+            return in.get(Calendar.DAY_OF_MONTH) + "/" + obtenerMes(in.get(Calendar.MONTH)) + "/" + in.get(Calendar.YEAR);
         }
-
-
     }
 
+    private boolean antier(Calendar c, Calendar in) {
+        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) - 2);
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {
+            return true;
+        } else return false;
+    }
+
+    private boolean ayer(Calendar c, Calendar in) {
+        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH) - 1);
+        if (c.get(Calendar.DAY_OF_MONTH) == in.get(Calendar.DAY_OF_MONTH) &&
+                c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
+                c.get(Calendar.YEAR) == in.get(Calendar.DAY_OF_MONTH)) {
+            return true;
+        } else return false;
+    }
 
 
     private Object obtenerAMPM(int hrs) {

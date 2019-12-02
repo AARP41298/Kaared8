@@ -29,6 +29,8 @@ import com.example.kaared_v08.entidad.Citas;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AgendarFragment extends Fragment {
 
@@ -138,20 +140,20 @@ public class AgendarFragment extends Fragment {
 
         if (validaTexto()) {
             //Toast.makeText(getContext(), "chido", Toast.LENGTH_SHORT).show();
-            int dia, mes, anio,eta,precio;
+            int dia, mes, anio, eta, precio;
             String[] fecha = tvFecha.getText().toString().split("-");
             dia = Integer.parseInt(fecha[0]);
             mes = obtenerNumMes(fecha[1]);
             anio = Integer.parseInt(fecha[2]);
 
-            eta= Integer.parseInt(etEta.getText().toString());
+            eta = Integer.parseInt(etEta.getText().toString());
             precio = Integer.parseInt(etPrecio.getText().toString());
 
-            Calendar c= Calendar.getInstance();
-            c.set(anio,mes,dia,timePicker.getHour(),timePicker.getMinute());
+            Calendar c = Calendar.getInstance();
+            c.set(anio, mes, dia, timePicker.getHour(), timePicker.getMinute());
             long fechaIni = c.getTimeInMillis();
-            c.set(Calendar.MINUTE,c.get(Calendar.MINUTE)+eta);
-            long fechaFin =  c.getTimeInMillis();
+            c.set(Calendar.MINUTE, c.get(Calendar.MINUTE) + eta);
+            long fechaFin = c.getTimeInMillis();
 
 
             Toast.makeText(getContext(), "Agendado", Toast.LENGTH_SHORT).show();
@@ -159,7 +161,10 @@ public class AgendarFragment extends Fragment {
             listaCita.add(new Citas(listaCita.size() + 1 + "", etNom.getText().toString(),
                     etTel.getText().toString(), etSer.getText().toString(),
                     "agendada", precio,
-                    fechaIni,fechaFin));
+                    fechaIni, fechaFin));
+
+            ordenarmM();
+
             TinyDBCitas save = new TinyDBCitas(getContext());
             save.putListObject("DBlistaCitas", listaCita);
 
@@ -172,6 +177,14 @@ public class AgendarFragment extends Fragment {
 
         }
 
+    }
+
+    private void ordenarmM() {
+        Collections.sort(listaCita, new Comparator<Citas>() {
+            public int compare(Citas c1, Citas c2) {
+                return Long.valueOf(c1.getFechaIni()).compareTo(c2.getFechaIni());
+            }
+        });
     }
 
     private int obtenerNumMes(String s) {

@@ -1,5 +1,6 @@
-package com.example.kaared_v08.ui.ingresos;
+package com.example.kaared_v08.ui.resumen;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,9 @@ import com.example.kaared_v08.entidad.Caja;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AdaptadorCajaItemIngresos extends RecyclerView.Adapter<AdaptadorCajaItemIngresos.ExampleViewHolder> {
+public class AdaptadorCajaItemResumen extends RecyclerView.Adapter<AdaptadorCajaItemResumen.ExampleViewHolder> {
     private ArrayList<Caja> mListaCita;
-    private AdaptadorCajaItemIngresos.OnItemClickListener mListener;
+    private AdaptadorCajaItemResumen.OnItemClickListener mListener;
 
     Caja cajaActual;
 
@@ -23,20 +24,26 @@ public class AdaptadorCajaItemIngresos extends RecyclerView.Adapter<AdaptadorCaj
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(AdaptadorCajaItemIngresos.OnItemClickListener listener) {
+    public void setOnItemClickListener(AdaptadorCajaItemResumen.OnItemClickListener listener) {
         mListener = listener;
     }
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvDia, tvConcepto, tvHora, tvMonto;
+        public TextView tvDiaIn, tvConceptoIn, tvHoraIn, tvMontoIn;
+        public TextView tvDiaOut, tvConceptoOut, tvHoraOut, tvMontoOut;
 
 
-        public ExampleViewHolder(View itemView, final AdaptadorCajaItemIngresos.OnItemClickListener listener) {
+        public ExampleViewHolder(View itemView, final AdaptadorCajaItemResumen.OnItemClickListener listener) {
             super(itemView);
-            tvDia = itemView.findViewById(R.id.tv_itemcaja_fecha);
-            tvConcepto = itemView.findViewById(R.id.tv_itemcaja_concepto);
-            tvHora = itemView.findViewById(R.id.tv_itemcaja_hora);
-            tvMonto = itemView.findViewById(R.id.tv_itemcaja_monto);
+            tvDiaIn = itemView.findViewById(R.id.tv_itemresumen_fecha_in);
+            tvConceptoIn = itemView.findViewById(R.id.tv_itemresumen_concepto_in);
+            tvHoraIn = itemView.findViewById(R.id.tv_itemresumen_hora_in);
+            tvMontoIn = itemView.findViewById(R.id.tv_itemresumen_monto_in);
+
+            tvDiaOut = itemView.findViewById(R.id.tv_itemresumen_fecha_out);
+            tvConceptoOut = itemView.findViewById(R.id.tv_itemresumen_concepto_out);
+            tvHoraOut = itemView.findViewById(R.id.tv_itemresumen_hora_out);
+            tvMontoOut = itemView.findViewById(R.id.tv_itemresumen_monto_out);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -53,34 +60,64 @@ public class AdaptadorCajaItemIngresos extends RecyclerView.Adapter<AdaptadorCaj
         }
     }
 
-    public AdaptadorCajaItemIngresos(ArrayList<Caja> listaCaja) {
+    public AdaptadorCajaItemResumen(ArrayList<Caja> listaCaja) {
         mListaCita = listaCaja;
     }
 
 
     @Override
-    public AdaptadorCajaItemIngresos.ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_caja, parent, false);
-        AdaptadorCajaItemIngresos.ExampleViewHolder evh = new AdaptadorCajaItemIngresos.ExampleViewHolder(v, mListener);
+    public AdaptadorCajaItemResumen.ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_resumen, parent, false);
+        AdaptadorCajaItemResumen.ExampleViewHolder evh = new AdaptadorCajaItemResumen.ExampleViewHolder(v, mListener);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(AdaptadorCajaItemIngresos.ExampleViewHolder holder, int position) {
+    public void onBindViewHolder(AdaptadorCajaItemResumen.ExampleViewHolder holder, int position) {
         cajaActual = mListaCita.get(position);
 
-        if (cajaActual.getFecha() == 0L) {
-            holder.tvDia.setText("TOTAL");
-            holder.tvMonto.setText("=$" + cajaActual.getMonto());
-            holder.tvConcepto.setText("");
-            holder.tvHora.setText("");
+        if (cajaActual.getFecha() == 0L && cajaActual.getMonto() < 0) {
+            holder.tvDiaOut.setText("TOTAL");
+            holder.tvMontoOut.setText("=$" + cajaActual.getMonto());
+            holder.tvMontoOut.setTextColor(Color.RED);
+            holder.tvConceptoOut.setText("");
+            holder.tvHoraOut.setText("");
+
+            holder.tvDiaIn.setText("");
+            holder.tvMontoIn.setText("");
+            holder.tvConceptoIn.setText("");
+            holder.tvHoraIn.setText("");
+        } else if (cajaActual.getFecha() == 0L && 0 <= cajaActual.getMonto()) {
+            holder.tvDiaIn.setText("TOTAL");
+            holder.tvMontoIn.setText("=$" + cajaActual.getMonto());
+            holder.tvMontoIn.setTextColor(Color.GREEN);
+            holder.tvConceptoIn.setText("");
+            holder.tvHoraIn.setText("");
+
+            holder.tvDiaOut.setText("");
+            holder.tvMontoOut.setText("");
+            holder.tvConceptoOut.setText("");
+            holder.tvHoraOut.setText("");
+        } else if (cajaActual.getMonto() < 0) {
+            holder.tvDiaOut.setText(obtenerHAAn());
+            holder.tvMontoOut.setText("$" + cajaActual.getMonto());
+            holder.tvConceptoOut.setText(cajaActual.getConcepto());
+            holder.tvHoraOut.setText(obtenerHora());
+
+            holder.tvDiaIn.setText("");
+            holder.tvMontoIn.setText("");
+            holder.tvConceptoIn.setText("");
+            holder.tvHoraIn.setText("");
         } else {
+            holder.tvDiaIn.setText(obtenerHAAn());
+            holder.tvMontoIn.setText("$" + cajaActual.getMonto());
+            holder.tvConceptoIn.setText(cajaActual.getConcepto());
+            holder.tvHoraIn.setText(obtenerHora());
 
-
-            holder.tvDia.setText(obtenerHAAn());
-            holder.tvMonto.setText("$" + cajaActual.getMonto());
-            holder.tvConcepto.setText(cajaActual.getConcepto());
-            holder.tvHora.setText(obtenerHora());
+            holder.tvDiaOut.setText("");
+            holder.tvMontoOut.setText("");
+            holder.tvConceptoOut.setText("");
+            holder.tvHoraOut.setText("");
         }
 
     }
@@ -92,9 +129,9 @@ public class AdaptadorCajaItemIngresos extends RecyclerView.Adapter<AdaptadorCaj
     }
 
     private String obtenerMin(int min) {
-        if (min < 10) {
-            return "0" + min;
-        } else return min + "";
+        if (min<10){
+            return "0"+min;
+        } else return min+"";
     }
 
     private String obtenerHAAn() {

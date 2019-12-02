@@ -74,19 +74,18 @@ public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.Ex
 
         holder.tvDia.setText(obtenerHMP(c));
         holder.tvServicio.setText(citaActual.getServicio());
-        holder.tvHora.setText(c.get(Calendar.HOUR_OF_DAY) + ":" + obtenerMin(c.get(Calendar.MINUTE)) + " " + obtenerAMPM(c.get(Calendar.HOUR_OF_DAY)));
+        holder.tvHora.setText(c.get(Calendar.HOUR) + ":" + obtenerMin(c.get(Calendar.MINUTE)) + " " + obtenerAMPM(c.get(Calendar.HOUR_OF_DAY)));
         holder.tvNombre.setText(citaActual.getNombre());
 
 
     }
 
     private String obtenerMin(int min) {
-        String minStrn = min + "";
         if (min < 10) {
-            minStrn = "0" + min;
-        }
-        return minStrn;
+            return "0" + min;
+        } else return min + "";
     }
+
 
     private String obtenerHMP(Calendar in) {
         Calendar c = Calendar.getInstance();
@@ -101,7 +100,7 @@ public class AdaptadorCitaItem extends RecyclerView.Adapter<AdaptadorCitaItem.Ex
         } else if (c.get(Calendar.DAY_OF_MONTH) + 2 == in.get(Calendar.DAY_OF_MONTH) &&
                 c.get(Calendar.MONTH) == in.get(Calendar.MONTH) &&
                 c.get(Calendar.YEAR) == in.get(Calendar.YEAR)) {
-            return "Pasado";
+            return "Pasadomañana";
         } else {
             return in.get(Calendar.DAY_OF_MONTH) + "/" + obtenerMes(in.get(Calendar.MONTH)) + "/" + in.get(Calendar.YEAR);
         }

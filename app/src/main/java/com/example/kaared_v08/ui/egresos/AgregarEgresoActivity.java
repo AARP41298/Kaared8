@@ -20,6 +20,7 @@ import com.example.kaared_v08.R;
 import com.example.kaared_v08.entidad.Caja;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AgregarEgresoActivity extends AppCompatActivity {
     EditText etConcepto, etMonto;
@@ -76,8 +77,12 @@ public class AgregarEgresoActivity extends AppCompatActivity {
         hora = timePicker.getHour();
         minuto = timePicker.getMinute();
 
+        Calendar cal= Calendar.getInstance();
+        cal.set(anio,mes,dia,timePicker.getHour(),timePicker.getMinute());
+        long fechaLong = cal.getTimeInMillis();
+
         Caja c = new Caja(listaCaja.size() + 1 + "", etConcepto.getText().toString(),
-                Integer.parseInt("-" + etMonto.getText().toString()), dia, mes, anio, hora, minuto);
+                Integer.parseInt("-" + etMonto.getText().toString()), fechaLong);
         listaCaja.add(c);
         TinyDBCaja save = new TinyDBCaja(this);
         save.putListObject("DBlistaCaja", listaCaja);

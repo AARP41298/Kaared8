@@ -24,8 +24,8 @@ import com.example.kaared_v08.ui.inicio.AdaptadorCitaItem;
 
 import java.util.ArrayList;
 
-
 public class IngresosFragment extends Fragment {
+
     RecyclerView mRecyclerView;
     AdaptadorCajaItemIngresos mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
@@ -71,7 +71,7 @@ public class IngresosFragment extends Fragment {
                 total+=i.getMonto();
             }
         }
-        listaCajaI.add(new Caja("","",total,0,0,0,0,0));
+        listaCajaI.add(new Caja("","",total,0L));
 
     }
 }
